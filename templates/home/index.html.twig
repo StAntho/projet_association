@@ -5,11 +5,45 @@
 {% block content %}
 
 <div>
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello ! ✅</h1>
     <h2>Notre boutique</h2>   
 </div>
 <div>
     <h2>Nos derniers arrivants</h2>
+
+    <div class="example-wrapper">
+        {% for animal in animals %}
+            <div class="card" style="width: 18rem;">
+                {% if animal.reserved %}
+                <p>Réservé(e)</p>
+                {% endif %}
+                <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ animal.name }}</h5>
+                    <p class="card-text">{{animal.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{animal.age}}</li>
+                    <li class="list-group-item">{{animal.type}}</li>
+                    <li class="list-group-item">{{animal.race}}</li>
+                    <li class="list-group-item">{{animal.gender}}</li>
+                    <li class="list-group-item">
+                        {% if animal.sterilised %}
+                        Stéril(e)
+                        {% else %}
+                        Non Stéril(e)
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item">Arrivé le {{ animal.Datearrived|date('d-m-y', "Europe/Paris") }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{ path('animal_show', {id:animal.id} ) }}" class="card-link">En détail</a>
+                    <a href="#" class="card-link">Mettre à jour</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 </div>
 <div>
     <h2>Faire un don</h2>

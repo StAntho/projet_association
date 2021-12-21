@@ -20,47 +20,52 @@ class Animal
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $Age;
+    private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Type;
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Race;
+    private $race;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $Description;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $Gender;
+    private $gender;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $Sterilised;
+    private $sterilised;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $Reserved;
+    private $reserved;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $Date_arrived;
+    private $dateArrived;
+
+    /**
+     * @ORM\Column(type="string", length=40)
+     */
+    private $picture;
 
     public function getId(): ?int
     {
@@ -69,108 +74,120 @@ class Animal
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getAge(): ?int
     {
-        return $this->Age;
+        return $this->age;
     }
 
-    public function setAge(int $Age): self
+    public function setAge(int $age): self
     {
-        $this->Age = $Age;
+        $this->age = $age;
 
         return $this;
     }
 
     public function getType(): ?string
     {
-        return $this->Type;
+        return $this->type;
     }
 
-    public function setType(string $Type): self
+    public function setType(string $type): self
     {
-        $this->Type = $Type;
+        $this->type = $type;
 
         return $this;
     }
 
     public function getRace(): ?string
     {
-        return $this->Race;
+        return $this->race;
     }
 
-    public function setRace(string $Race): self
+    public function setRace(string $race): self
     {
-        $this->Race = $Race;
+        $this->race = $race;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(string $Description): self
+    public function setDescription(string $description): self
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }
 
     public function getGender(): ?string
     {
-        return $this->Gender;
+        return $this->gender;
     }
 
-    public function setGender(string $Gender): self
+    public function setGender(string $gender): self
     {
-        $this->Gender = $Gender;
+        $this->gender = $gender;
 
         return $this;
     }
 
     public function getSterilised(): ?bool
     {
-        return $this->Sterilised;
+        return $this->sterilised;
     }
 
-    public function setSterilised(bool $Sterilised): self
+    public function setSterilised(bool $sterilised): self
     {
-        $this->Sterilised = $Sterilised;
+        $this->sterilised = $sterilised;
 
         return $this;
     }
 
     public function getReserved(): ?bool
     {
-        return $this->Reserved;
+        return $this->reserved;
     }
 
-    public function setReserved(bool $Reserved): self
+    public function setReserved(bool $reserved): self
     {
-        $this->Reserved = $Reserved;
+        $this->reserved = $reserved;
 
         return $this;
     }
 
     public function getDateArrived(): ?\DateTimeInterface
     {
-        return $this->Date_arrived;
+        return $this->dateArrived;
     }
 
-    public function setDateArrived(\DateTimeInterface $Date_arrived): self
+    public function setDateArrived(\DateTimeInterface $dateArrived): self
     {
-        $this->Date_arrived = $Date_arrived;
+        $this->dateArrived = $dateArrived;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

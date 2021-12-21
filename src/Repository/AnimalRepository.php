@@ -19,6 +19,15 @@ class AnimalRepository extends ServiceEntityRepository
         parent::__construct($registry, Animal::class);
     }
 
+    public function findByDateArrivedThirtyDays($dateStart, $dateNow) {
+        return $this->createQueryBuilder('a')
+        ->where('a.dateArrived BETWEEN :start AND :end')
+        ->setParameter('start', $dateStart->format('Y-m-d H:m:s'))
+        ->setParameter('end', $dateNow->format('Y-m-d H:m:s'))
+        ->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return Animal[] Returns an array of Animal objects
     //  */

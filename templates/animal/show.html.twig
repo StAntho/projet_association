@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ animal.name}}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ animal.name}}</h1>
+    <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top" alt="..." style="width:500px; height:200px" >
+    <p>{{ animal.description }}</p>
+
+    <p>{{animal.age}}</p>
+    <p>{{animal.type}}</p>
+    <p>{{animal.race}}</p>
+    <p>{{animal.gender}}</p>
+    <p>
+        {% if animal.sterilised %}
+        Stéril(e)
+        {% else %}
+        Non Stéril(e)
+        {% endif %}
+    </p>
+    <p>Arrivé le {{ animal.datearrived|date('d-m-y', "Europe/Paris") }}</p>
+{% endblock %}

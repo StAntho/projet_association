@@ -1,0 +1,67 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+  Liste des animaux!
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="alert">
+            {% for type, messages in app.flashes %}
+                <div class="alert-{{type}}">
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        {{ form_start(form) }}
+            <div class="form-floating mb-3">
+                {# form_widget  #}
+                {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Name"}})}}
+                {{ form_label(form.name)}}
+                {{ form_errors(form.name)}}
+            </div>
+            <div class="form-floating mb-3">
+                {{ form_widget(form.description, {attr: {class: "form-control", placeholder: "Titre"}})}}
+                {{ form_label(form.description)}}
+                {{ form_errors(form.description)}}
+            </div>
+            <div class="form-floating mb-3">
+                {{ form_label(form.type)}}
+                {{ form_widget(form.type, {attr: {class: "form-control mb-3", placeholder: "Type"}})}}
+                {{ form_errors(form.type)}}
+            </div>
+
+            <div>
+                Genre
+            </div>
+            <div>
+                {{ form_widget(form.gender, {attr: {class: "form-control mb-3"}})}}
+                {{ form_errors(form.gender)}}
+            </div>
+
+            <div>
+                {{form_row(form.age)}}
+            </div>
+
+            <div class="form-floating mb-3">
+                {{ form_label(form.race)}}
+                {{ form_widget(form.race, {attr: {class: "form-control mb-3", placeholder: "Race"}})}}
+                {{ form_errors(form.race)}}
+            </div>
+
+            <div>
+                {{form_row(form.picture)}}
+            </div>
+            
+            <div>
+                {{form_row(form.Ajouter)}}
+            </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

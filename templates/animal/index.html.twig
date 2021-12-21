@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-  Hello AnimalController!
+  Liste des animaux!
 {% endblock %}
 
 {% block content %}
@@ -16,10 +16,8 @@
             <div class="card" style="width: 18rem;">
                 {% if animal.reserved %}
                 <p>Réservé(e)</p>
-                {% else %}
-                <p>Non réservé(e)</p>
                 {% endif %}
-                <img src="..." class="card-img-top" alt="...">
+                <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ animal.name }}</h5>
                     <p class="card-text">{{animal.description}}</p>
@@ -39,8 +37,8 @@
                     <li class="list-group-item">Arrivé le {{ animal.Datearrived|date('d-m-y', "Europe/Paris") }}</li>
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <a href="{{ path('animal_show', {id:animal.id} ) }}" class="card-link">En détail</a>
+                    <a href="#" class="card-link">Mettre à jour</a>
                 </div>
             </div>
         {% endfor %}

@@ -4,10 +4,13 @@
   <header>
     <nav>
       <ul>
-        <li>Accueil</li>
-        <li>se connecter</li>
-        <li>Nos animaux</li>
-        <li>Se deconnecter</li>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Nos animaux</a></li>
+        {% if app.user %}
+        <li><a href="#">Se deconnecter</a></li>
+        {% else %}
+        <li><a href="#">Se connecter</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>

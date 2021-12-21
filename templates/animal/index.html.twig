@@ -13,22 +13,36 @@
 
     <div class="example-wrapper">
         {% for animal in animals %}
-            <p>{{ animal.name }}, {{animal.age}}, {{animal.type}}, {{animal.race}}, 
-            {{animal.description}}, {{animal.gender}}, 
-            
-            {% if animal.sterilised %}
-            Stéril(e)
-            {% else %}
-            Non Stéril(e)
-            {% endif %}
-            
-            {% if animal.reserved %}
-            Réservé(e)
-            {% else %}
-            Non réservé(e)
-            {% endif %}
-            {{ animal.Datearrived|date('d-M-yy H:m:s') }}
-            </p>
+            <div class="card" style="width: 18rem;">
+                {% if animal.reserved %}
+                <p>Réservé(e)</p>
+                {% else %}
+                <p>Non réservé(e)</p>
+                {% endif %}
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ animal.name }}</h5>
+                    <p class="card-text">{{animal.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{animal.age}}</li>
+                    <li class="list-group-item">{{animal.type}}</li>
+                    <li class="list-group-item">{{animal.race}}</li>
+                    <li class="list-group-item">{{animal.gender}}</li>
+                    <li class="list-group-item">
+                        {% if animal.sterilised %}
+                        Stéril(e)
+                        {% else %}
+                        Non Stéril(e)
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item">Arrivé le {{ animal.Datearrived|date('d-m-y', "Europe/Paris") }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
         {% endfor %}
     </div>
 

@@ -28,6 +28,15 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+            $imageName = md5(uniqid()) . '.' . $image->guessExtension();
+
+            $image->move(
+                $this->getParameter('product_uploade_file'),
+                $imageName
+            );
+            $product->setImage($imageName);
+
             $em = $mr->getManager();
             $em->persist($product);
             $em->flush();

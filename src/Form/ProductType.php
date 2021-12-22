@@ -21,10 +21,10 @@ class ProductType extends AbstractType
     ): void {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Genre',
+                'label' => 'Name',
             ])
             ->add('description', TextType::class, [
-                'label' => 'Type',
+                'label' => 'Description',
             ])
             ->add('category', EntityType::class, [
                 'label' => 'Catégorie',

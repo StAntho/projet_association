@@ -15,35 +15,39 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AnimalType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add('name', TextType::class, [
-                "label" => "Name:",
-                "attr" => ["class" => "form-floating mb-3"]
+                'label' => 'Name:',
+                'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('age', IntegerType::class, [
-                "attr" => ["class" => "form-floating mb-3"]
+                'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('type', TextType::class, [
-                "label" => "Type:",
-                "attr" => ["class" => "form-floating mb-3"]
+                'label' => 'Type:',
+                'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('race', TextType::class, [
-                "label" => "Race:",
-                "attr" => ["class" => "form-floating mb-3"]
+                'label' => 'Race:',
+                'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('description', TextareaType::class, [
-                "label" => "Description de l'animal"
+                'label' => "Description de l'animal",
             ])
-            ->add('picture', FileType::class, ["label" => "Image (JPEG/PNG)"])
+            ->add('picture', FileType::class, [
+                'label' => 'Image (JPEG/PNG)',
+            ])
             ->add('gender', ChoiceType::class, [
-                'choices'  => [
+                'choices' => [
                     'Mâle' => 'Mâle',
-                    'Femelle' => 'Femelle'
-                ]
+                    'Femelle' => 'Femelle',
+                ],
             ])
-            ->add("Ajouter", SubmitType::class);
+            ->add('Ajouter', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

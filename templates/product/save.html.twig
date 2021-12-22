@@ -2,11 +2,23 @@
 
 {% block content %}
   <div class="container">
+
+  <div class="alert">
+        {% for type, messages in app.flashes %}
+            <div class="alert-{{type}}">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+  </div>
+
     {{ form_start(form) }}
     
       <div class="form-floating mb-3">
         {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Nomination"}})}}
         {{ form_label(form.name) }}
+        {{ form_errors(form.name)}}
       </div>
 
       <div class="col-md-12">
@@ -16,20 +28,25 @@
       <div class="form-floating mb-3">
         {{ form_widget(form.description, {attr: {class: "form-control", placeholder: "Description"}})}}
         {{ form_label(form.description) }}
+        {{ form_errors(form.description)}}
       </div>
 
       <div class="form-floating mb-3">
         {{ form_widget(form.price, {attr: {class: "form-control", placeholder: "Prix"}})}}
         {{ form_label(form.price) }}
+        {{ form_errors(form.price)}}
       </div>
 
       <div class="form-floating mb-3">
         {{ form_widget(form.quantity, {attr: {class: "form-control", placeholder: "Quantité"}})}}
         {{ form_label(form.quantity) }}
+        {{ form_errors(form.quantity)}}
       </div>
 
       <div>
         {{ form_row(form.image) }}
+        {{ form_errors(form.image)}}
+        
       </div>
 
       <div>

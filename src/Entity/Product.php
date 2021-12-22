@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProductRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,6 +21,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
+
 
 
      #[
@@ -41,9 +42,6 @@ class Product
      */
 
     #[
-        Assert\NotBlank(
-            message: "le {{label}} ne peut pas être vide, merci de le remplir"
-        ),
         Assert\Length(
             min: 3,
             max: 20,
@@ -56,40 +54,16 @@ class Product
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
-    #[
-        Assert\NotBlank(
-            message: "le {{label}} ne peut pas être vide, merci de le remplir"
-        ),
-        Assert\Positive(
-            message: 'La valeur {{value}} saisie est invalide, merci de rentrer une valeur positive superieur à 0'
-        )
-    ]
     private $price;
 
     /**
      * @ORM\Column(type="integer")
      */
-    #[
-        Assert\NotBlank(
-            message: "le {{label}} ne peut pas être vide, merci de le remplir"
-        ),
-        Assert\Positive(
-            message: 'La valeur {{value}} saisie est invalide, merci de rentrer une valeur positive superieur à 0'
-        )
-    ]
-    
     private $quantity;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-
-    #[
-        Assert\File(
-            mimeTypes: ["image/png", "image/jpeg"],
-            mimeTypesMessage: "On attend un fichier JPG ou PNG"
-        )
-    ]
     private $image;
 
     /**
@@ -111,17 +85,13 @@ class Product
     public function setName(string $name): self
     {
         $this->name = $name;
-
-
         return $this;
     }
-
 
     public function getDescription(): ?string
     {
         return $this->description;
     }
-
 
     public function setDescription(string $description): self
     {

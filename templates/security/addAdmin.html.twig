@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Add new admin{% endblock %}
+
+{% block content %}
+    {{form_start(form)}}
+        <div class="form-floating mb-3">
+            {{ form_row(form.secret, {attr: {class: "form-control", placeholder: "Mot de passe admin"}})}}
+        </div>
+    {{form_end(form)}}
+{% endblock %}

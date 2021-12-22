@@ -12,9 +12,13 @@
         <li><a href="{{ path('animal_list') }}">Nos animaux</a></li>
         <li><a href="{{ path('product') }}">Notre boutique</a></li>
         {% if app.user %}
-          <li><a href="{{ path('index') }}">Se deconnecter</a></li>
+        <li><a href="{{path('app_logout')}}">Se deconnecter</a></li>
         {% else %}
-          <li><a href="{{ path('index') }}">Se connecter</a></li>
+        <li><a href="{{path('app_login')}}">Se connecter</a></li>
+        <li><a href="{{path('app_register')}}">S'inscrire</a></li>
+        {% endif %}
+        {% if is_granted("ROLE_ADMIN") %}
+        <li><a href="#">Back Office</a></li>
         {% endif %}
       </ul>
     </nav>

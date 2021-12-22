@@ -19,6 +19,11 @@ class AnimalRepository extends ServiceEntityRepository
         parent::__construct($registry, Animal::class);
     }
 
+    /*
+        La requête retourne tous les animaux où dateArrived est entre dateStart et dateNow
+        La valeur de dateStart est de 30j avant dateNow
+        Les dates prennent format année-mois-jour puis heure:minute:second
+    */
     public function findByDateArrivedThirtyDays($dateStart, $dateNow) {
         return $this->createQueryBuilder('a')
         ->where('a.dateArrived BETWEEN :start AND :end')

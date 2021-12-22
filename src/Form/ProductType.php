@@ -18,11 +18,11 @@ class ProductType extends AbstractType
         array $options
     ): void {
         $builder
-            ->add('kind', TextType::class, [
-                'label' => 'Genre',
+            ->add('name', TextType::class, [
+                'label' => 'Name',
             ])
-            ->add('type', TextType::class, [
-                'label' => 'Type',
+            ->add('description', TextType::class, [
+                'label' => 'Description',
             ])
             ->add('price', NumberType::class, [
                 'label' => 'Prix',

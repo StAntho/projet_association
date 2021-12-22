@@ -16,15 +16,15 @@
     {{ form_start(form) }}
     
       <div class="form-floating mb-3">
-        {{ form_widget(form.kind, {attr: {class: "form-control", placeholder: "Genre"}})}}
-        {{ form_label(form.kind) }}
-        {{ form_errors(form.kind)}}
+        {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Nom"}})}}
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name)}}
       </div>
 
       <div class="form-floating mb-3">
-        {{ form_widget(form.type, {attr: {class: "form-control", placeholder: "type"}})}}
-        {{ form_label(form.type) }}
-        {{ form_errors(form.type)}}
+        {{ form_widget(form.description, {attr: {class: "form-control", placeholder: "Description"}})}}
+        {{ form_label(form.description) }}
+        {{ form_errors(form.description)}}
       </div>
 
       <div class="form-floating mb-3">

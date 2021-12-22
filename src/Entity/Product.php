@@ -33,7 +33,7 @@ class Product
             maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
         )
     ]
-    private $kind;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -50,7 +50,7 @@ class Product
         )
     ]
 
-    private $type;
+    private $description;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
@@ -96,26 +96,26 @@ class Product
         return $this->id;
     }
 
-    public function getKind(): ?string
+    public function getName(): ?string
     {
-        return $this->kind;
+        return $this->name;
     }
 
-    public function setKind(string $kind): self
+    public function setName(string $name): self
     {
-        $this->kind = $kind;
+        $this->kind = $name;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getdescription(): ?string
     {
-        return $this->type;
+        return $this->description;
     }
 
-    public function setType(string $type): self
+    public function setdescription(string $description): self
     {
-        $this->type = $type;
+        $this->type = $description;
 
         return $this;
     }

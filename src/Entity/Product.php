@@ -3,11 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-<<<<<<< HEAD
 use App\Repository\ProductRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-=======
->>>>>>> 4fc1f97 (correction)
+
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -24,14 +22,8 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-<<<<<<< HEAD
-
-
 
      #[
-        Assert\NotBlank(
-            message: "le {{label}} ne peut pas être vide, merci de le remplir"
-        ),
         Assert\Length(
             min: 3,
             max: 20,
@@ -39,15 +31,11 @@ class Product
             maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
         )
     ]
-=======
->>>>>>> 4fc1f97 (correction)
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-<<<<<<< HEAD
-
     #[
         Assert\Length(
             min: 3,
@@ -56,8 +44,6 @@ class Product
             maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
         )
     ]
-=======
->>>>>>> 4fc1f97 (correction)
     private $description;
 
     /**

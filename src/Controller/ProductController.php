@@ -35,6 +35,7 @@ class ProductController extends AbstractController
                 $this->getParameter('product_uploade_file'),
                 $imageName
             );
+            $product->setImage($imageName);
 
             $em = $mr->getManager();
             $em->persist($product);

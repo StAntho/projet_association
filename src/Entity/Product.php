@@ -22,6 +22,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
 
+
      #[
         Assert\NotBlank(
             message: "le {{label}} ne peut pas être vide, merci de le remplir"
@@ -38,6 +39,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
+
     #[
         Assert\NotBlank(
             message: "le {{label}} ne peut pas être vide, merci de le remplir"
@@ -49,7 +51,6 @@ class Product
             maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
         )
     ]
-
     private $description;
 
     /**
@@ -91,6 +92,12 @@ class Product
     ]
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,19 +110,22 @@ class Product
 
     public function setName(string $name): self
     {
-        $this->kind = $name;
+        $this->name = $name;
+
 
         return $this;
     }
 
-    public function getdescription(): ?string
+
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setdescription(string $description): self
+
+    public function setDescription(string $description): self
     {
-        $this->type = $description;
+        $this->description = $description;
 
         return $this;
     }
@@ -152,6 +162,18 @@ class Product
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

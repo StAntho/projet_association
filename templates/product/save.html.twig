@@ -16,9 +16,13 @@
     {{ form_start(form) }}
     
       <div class="form-floating mb-3">
-        {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Nom"}})}}
+        {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Nomination"}})}}
         {{ form_label(form.name) }}
         {{ form_errors(form.name)}}
+      </div>
+
+      <div class="col-md-12">
+            {{ form_row(form.category, {'attr':{'class': 'form-control'}}) }}                   
       </div>
 
       <div class="form-floating mb-3">

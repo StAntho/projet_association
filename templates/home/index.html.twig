@@ -6,12 +6,15 @@
 
 <div>
     <h1>Hello ! ✅</h1>
-    <h2>Notre boutique</h2>   
+    <h2>Notre boutique</h2>  
+    {% for animal in animals %}
+    {% else %}
+        <p>Nous sommes en rupture de stock sur l'ensemble de nos produits.</p>
+    {% endfor %}
 </div>
 <div>
     <h2>Nos derniers arrivants</h2>
 
-    <div class="example-wrapper">
         {% for animal in animals %}
             <div class="card" style="width: 18rem;">
                 {% if animal.reserved %}
@@ -41,8 +44,9 @@
                     <a href="#" class="card-link">Mettre à jour</a>
                 </div>
             </div>
+        {% else %}
+            <p>Nous n'avons plus d'animaux à faire adopter pour le moment.</p>
         {% endfor %}
-    </div>
 
 </div>
 <div>

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
@@ -22,12 +23,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
 
-
-
      #[
-        Assert\NotBlank(
-            message: "le {{label}} ne peut pas être vide, merci de le remplir"
-        ),
         Assert\Length(
             min: 3,
             max: 20,
@@ -40,7 +36,6 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-
     #[
         Assert\Length(
             min: 3,
@@ -85,6 +80,7 @@ class Product
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 

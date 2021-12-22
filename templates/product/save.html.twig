@@ -2,30 +2,47 @@
 
 {% block content %}
   <div class="container">
+
+  <div class="alert">
+        {% for type, messages in app.flashes %}
+            <div class="alert-{{type}}">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+  </div>
+
     {{ form_start(form) }}
     
       <div class="form-floating mb-3">
         {{ form_widget(form.kind, {attr: {class: "form-control", placeholder: "Genre"}})}}
         {{ form_label(form.kind) }}
+        {{ form_errors(form.kind)}}
       </div>
 
       <div class="form-floating mb-3">
         {{ form_widget(form.type, {attr: {class: "form-control", placeholder: "type"}})}}
         {{ form_label(form.type) }}
+        {{ form_errors(form.type)}}
       </div>
 
       <div class="form-floating mb-3">
         {{ form_widget(form.price, {attr: {class: "form-control", placeholder: "Prix"}})}}
         {{ form_label(form.price) }}
+        {{ form_errors(form.price)}}
       </div>
 
       <div class="form-floating mb-3">
         {{ form_widget(form.quantity, {attr: {class: "form-control", placeholder: "Quantité"}})}}
         {{ form_label(form.quantity) }}
+        {{ form_errors(form.quantity)}}
       </div>
 
       <div>
         {{ form_row(form.image) }}
+        {{ form_errors(form.image)}}
+        
       </div>
 
       <div>

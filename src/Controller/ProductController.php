@@ -12,15 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
+    public function __construct(ManagerRegistry $doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }
     #[Route('/product', name: 'product')]
     public function index(): Response
     {
+        $products = $this->doctrine->getRepository(Product::class)->findAll();
         return $this->render('product/index.html.twig', [
-            'controller_name' => 'ProductController',
+            'products' => $products,
         ]);
     }
 
-    #[Route('/product/save', name: 'product_save')]
+    #[Route('/product/save', name: 'product_save', methods: ["POST", "GET"])]
     public function save(Request $request, ManagerRegistry $mr)
     {
         $product = new Product();

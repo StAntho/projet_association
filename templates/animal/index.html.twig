@@ -5,45 +5,70 @@
 {% endblock %}
 
 {% block content %}
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font:
-        18px/1.5 sans-serif; } .example-wrapper code { background: #F5F5F5; padding:
-        2px 6px; }
-    </style>
+  <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font:
+    18px/1.5 sans-serif; } .example-wrapper code { background: #F5F5F5; padding:
+    2px 6px; }
+  </style>
 
-    <h1>Nos animaux</h1>
+  <h1>
+    Nos animaux
+  </h1>
 
-    <div class="example-wrapper">
-        {% for animal in animals %}
-            <div class="card" style="width: 18rem;">
-                {% if animal.reserved %}
-                <p>Réservé(e)</p>
-                {% endif %}
-                <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ animal.name }}</h5>
-                    <p class="card-text">{{animal.description}}</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{animal.age}}</li>
-                    <li class="list-group-item">{{animal.type}}</li>
-                    <li class="list-group-item">{{animal.race}}</li>
-                    <li class="list-group-item">{{animal.gender}}</li>
-                    <li class="list-group-item">
-                        {% if animal.sterilised %}
-                        Stéril(e)
-                        {% else %}
-                        Non Stéril(e)
-                        {% endif %}
-                    </li>
-                    <li class="list-group-item">Arrivé le {{ animal.Datearrived|date('d-m-y', "Europe/Paris") }}</li>
-                </ul>
-                <div class="card-body">
-                    <a href="{{ path('animal_show', {id:animal.id} ) }}" class="card-link">En détail</a>
-                    <a href="#" class="card-link">Mettre à jour</a>
-                </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for animal in animals %}
+        <div class="col" style="max-width: 20rem;">
+          <div class="card" style="width: 18rem;">
+            {% if animal.reserved %}
+              <p>
+                Réservé(e)
+              </p>
+            {% endif %}
+            <img src="{{ asset('img/uploads/' ~ animal.picture) }}"
+              class="card-img-top"
+              alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ animal.name }}
+              </h5>
+              <p class="card-text">
+                {{ animal.description }}
+              </p>
             </div>
-        {% endfor %}
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ animal.age }}</li>
+              <li class="list-group-item">{{ animal.type }}</li>
+              <li class="list-group-item">{{ animal.race }}</li>
+              <li class="list-group-item">{{ animal.gender }}</li>
+              <li class="list-group-item">
+                {% if animal.sterilised %}
+                  Stéril(e)
+                {% else %}
+                  Non Stéril(e)
+                {% endif %}
+              </li>
+              <li class="list-group-item">
+                Arrivé le {{ animal.Datearrived|date('d-m-y', 'Europe/Paris') }}
+              </li>
+            </ul>
+            <div class="card-body">
+              <a href="{{
+                path(
+                  'animal_show',
+                  {
+                    id: animal.id
+                  }
+                )
+                }}"
+                class="card-link">
+                En détail
+              </a>
+              <a href="#" class="card-link">Mettre à jour</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-
+  </div>
 {% endblock %}

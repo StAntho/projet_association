@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block content %}
+    {{form_start(form)}}
+        <div class="form-floating mb-3">
+            {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Nom de la catégorie"}})}}
+            {{ form_label(form.name)}}
+            {{ form_errors(form.name)}}
+        </div>
+    {{form_end(form)}}
+{% endblock %}

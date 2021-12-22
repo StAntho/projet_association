@@ -20,12 +20,12 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $kind;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
+    private $description;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
@@ -42,31 +42,37 @@ class Product
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getKind(): ?string
+    public function getName(): ?string
     {
-        return $this->kind;
+        return $this->name;
     }
 
-    public function setKind(string $kind): self
+    public function setName(string $name): self
     {
-        $this->kind = $kind;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getDescription(): ?string
     {
-        return $this->type;
+        return $this->description;
     }
 
-    public function setType(string $type): self
+    public function setDescription(string $description): self
     {
-        $this->type = $type;
+        $this->description = $description;
 
         return $this;
     }
@@ -103,6 +109,18 @@ class Product
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

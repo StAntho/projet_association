@@ -18,33 +18,32 @@ class AnimalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Name', TextType::class, [
+            ->add('name', TextType::class, [
                 "label" => "Name:",
                 "attr" => ["class" => "form-floating mb-3"]
             ])
-            ->add('Age', IntegerType::class, [
+            ->add('age', IntegerType::class, [
                 "attr" => ["class" => "form-floating mb-3"]
             ])
-            ->add('Type', TextType::class, [
+            ->add('type', TextType::class, [
                 "label" => "Type:",
                 "attr" => ["class" => "form-floating mb-3"]
             ])
-            ->add('Race', TextType::class, [
+            ->add('race', TextType::class, [
                 "label" => "Race:",
                 "attr" => ["class" => "form-floating mb-3"]
             ])
-            ->add('Description', TextareaType::class, [
+            ->add('description', TextareaType::class, [
                 "label" => "Description de l'animal"
             ])
             ->add('picture', FileType::class, ["label" => "Image (JPEG/PNG)"])
-            ->add('Gender', ChoiceType::class, [
+            ->add('gender', ChoiceType::class, [
                 'choices'  => [
                     'Mâle' => 'Mâle',
                     'Femelle' => 'Femelle'
                 ]
             ])
-            ->add("Ajouter", SubmitType::class)
-        ;
+            ->add("Ajouter", SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

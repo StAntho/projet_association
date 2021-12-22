@@ -4,12 +4,13 @@
   <header>
     <nav>
       <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Nos animaux</a></li>
+        <li><a href="{{path('index')}}">Accueil</a></li>
+        <li><a href="{{path('animal_list')}}">Nos animaux</a></li>
+        <li><a href="{{path('product')}}">Notre boutique</a></li>
         {% if app.user %}
-        <li><a href="#">Se deconnecter</a></li>
+        <li><a href="{{path('index')}}">Se deconnecter</a></li>
         {% else %}
-        <li><a href="#">Se connecter</a></li>
+        <li><a href="{{path('index')}}">Se connecter</a></li>
         {% endif %}
       </ul>
     </nav>

@@ -60,7 +60,9 @@
               </li>
             </ul>
             <div class="card-body">
-
+              <a href="{{ path('animal_show',{id: animal.id} ) }}" class="card-link">
+                En détail
+              </a>
               {% if animal.reserved %}
               {% else %}
               <a href="{{
@@ -71,11 +73,6 @@
                 }}" class="card-link">Adopter cet animal
               </a>
               {% endif %}
-
-              <a href="{{path('animal_show', {id: animal.id})}}" class="card-link">En détail</a>
-              <a href="{{path('animal_update', {animalId: animal.id})}}" class="card-link">Mettre à jour</a>
-              <a href="{{path('animal_delete', {animalId: animal.id})}}" class="card-link">Supprimer</a>
-
             </div>
           </div>
         </div>

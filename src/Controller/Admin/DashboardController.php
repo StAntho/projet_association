@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Entity\Category;
+use App\Entity\Animal;
 use App\Entity\Dossier;
 use App\Entity\Product;
+use App\Entity\Category;
+use App\Entity\Type;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -33,16 +35,17 @@ class DashboardController extends AbstractDashboardController
         return [
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
-            MenuItem::section('Blog'),
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class),
-            MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', Product::class),
+            MenuItem::section('Animals'),
+            MenuItem::linkToCrud('Animals', 'fas fa-dog', Animal::class),
+            MenuItem::linkToCrud('Espèces', 'fas fa-dog', Type::class),
+
+            MenuItem::section('Products'),
+            MenuItem::linkToCrud('Products', 'fas fa-euro-sign', Product::class),
+            MenuItem::linkToCrud('Catégories', 'fas fa-euro-sign', Category::class),
 
             MenuItem::section('Users'),
-            MenuItem::linkToCrud('Comments', 'fa fa-comment', Dossier::class),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
+            MenuItem::linkToCrud('Dossiers', 'fa fa-user', Dossier::class),
         ];
-        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('Users', 'fa fa-user', User::class);
-        // // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

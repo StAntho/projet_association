@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+  Votre dossier!
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="alert">
+            {% for type, messages in app.flashes %}
+                <div class="alert-{{type}}">
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if dossier.status == 1 %}
+        <h1>Nouveau</h1>
+        {% elseif dossier.status == 2 %}
+        <h1>En attente</h1>
+        {% else %}
+        <h1>Validé</h1>
+        {% endif %}
+
+        {{ form_start(form) }}
+            <div class="form-floating mb-3">
+                Nom de l'animal: {{ dossier.animal.name }}
+            </div>
+
+            
+            <a href="{{ asset('file/dossier/' ~ dossier.adoptionfile ) }}" download="{{ dossier.adoptionfile }}"> 
+            {{ dossier.adoptionfile }}
+            </a>
+
+            <a href="{{ asset('img/dossier/' ~ dossier.identitycard ) }}" download="{{ dossier.identitycard }}">
+            {{ dossier.identitycard }}
+            </a>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

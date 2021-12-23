@@ -2,37 +2,23 @@
 
 {% block body %}
   <header>
-    {# <nav>
-      <a href="{{ path('index') }}">
-        <img src="{{ asset('image/adopt.png') }}"
-          alt="logo"
-          style="width:10vw" />
-      </a>
-      <ul>
-        <li><a href="{{path('animal_list')}}">Nos animaux</a></li>
-        <li><a href="{{path('products')}}">Notre boutique</a></li>
-        {% if app.user %}
-          <li><a href="{{ path('app_logout') }}">Se deconnecter</a></li>
-        {% else %}
-          <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-          <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-          <li><a href="#">Back Office</a></li>
-        {% endif %}
-      </ul>
-    </nav> #}
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal">
-        Company name
+        <a href="{{ path('index') }}">Company name</a>
       </h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
+        <a class="p-2 text-dark" href="{{path('animal_list')}}">Nos animaux</a>
+        <a class="p-2 text-dark" href="{{path('products')}}">Notre boutique</a>
       </nav>
-      <a class="btn btn-outline-primary" href="#">Sign up</a>
+      {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary" href="#">Back Office</a>
+      {% endif %}
+      {% if app.user %}
+      <a class="p-2 text-dark" href="{{ path('app_logout') }}">Se deconnecter</a>
+      {% else %}
+      <a class="btn btn-outline-primary" href="{{ path('app_register') }}">S'inscrire</a>
+      <a class="btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
+      {% endif %}
     </div>
   </header>
   {% block content %}

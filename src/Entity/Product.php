@@ -39,7 +39,7 @@ class Product
     #[
         Assert\Length(
             min: 3,
-            max: 20,
+            max: 200,
             minMessage: "Le genre doit contenir au minimum {{ limit }} caractères",
             maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
         )

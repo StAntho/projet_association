@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ajout d'une nouvelle espèce{% endblock %}
+
+{% block content %}
+<h1>Ajout d'une nouvelle espèce</h1>
+    {{form_start(form)}}
+        <div class="form-floating mb-3">
+            {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Nom de l'espèce de l'animal"}})}}
+            {{ form_label(form.name)}}
+            {{ form_errors(form.name)}}
+        </div>
+    {{form_end(form)}}
+{% endblock %}

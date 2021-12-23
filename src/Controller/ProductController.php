@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\SearchProduct;
 use App\Form\ProductType;
 use App\Form\AddToCartType;
+use App\Form\SearchProductType;
+use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,16 +16,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    public function __construct(ManagerRegistry $doctrine)
+    /**
+     * @var ProductRepository
+     */
+    private $repository;
+
+    public function __construct(ProductRepository $repository)
     {
-        $this->doctrine = $doctrine;
+        $repository = $this->repository;
     }
-    #[Route('/product', name: 'product')]
-    public function index(): Response
+
+    #[Route('/products', name: 'products')]
+    public function index(Request $request, ProductRepository $repository): Response
     {
-        $products = $this->doctrine->getRepository(Product::class)->findAll();
+        $search = new SearchProduct();
+        $search->page = $request->get('page', 1);
+        $form = $this->createForm(SearchProductType::class, $search);
+        $form->handleRequest($request);
+        $products = $repository->productSearch($search);
+
         return $this->render('product/index.html.twig', [
-            'products' => $products,
+            'all' => $products,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -47,11 +62,19 @@ class ProductController extends AbstractController
             $em->persist($product);
             $em->flush();
             $this->addFlash('success', 'Produit ajouté avec succes');
-            return $this->redirectToRoute('product');
+            return $this->redirectToRoute('products');
         }
 
         return $this->render('product/save.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/product/show/{id}', name: 'product_show')]
+    public function show(Product $product)
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
         ]);
     }
 }

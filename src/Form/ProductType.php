@@ -15,6 +15,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProductType extends AbstractType
 {
+    /*
+        Méthode qui construit le formulaire pour créer un produit
+        Les différents champs: name, description, category, price, quantity, image
+        Le champ category est l'entité Category qui est une relation 
+        à un produit. EntityType nous retournera la liste des catégories dans le choice_label
+    */
     public function buildForm(
         FormBuilderInterface $builder,
         array $options

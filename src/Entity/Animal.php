@@ -30,11 +30,6 @@ class Animal
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $race;
 
     /**
@@ -67,6 +62,12 @@ class Animal
      */
     private $picture;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="animals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,18 +93,6 @@ class Animal
     public function setAge(int $age): self
     {
         $this->age = $age;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -188,6 +177,18 @@ class Animal
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -1,11 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-  Ajout d'un nouvel animal
+  {{animal.name}}
 {% endblock %}
 
 {% block content %}
-<h1>Ajout d'un nouvel animal</h1>
+
     <div class="container">
 
         <div class="alert">
@@ -20,27 +20,27 @@
 
         {{ form_start(form) }}
             <div class="form-floating mb-3">
-                {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Name", 'novalidate': 'novalidate'}})}}
+                {{ form_widget(form.name, {attr: {class: "form-control", value: animal.name, 'novalidate': 'novalidate'}})}}
                 {{ form_label(form.name)}}
                 {{ form_errors(form.name)}}
             </div>
 
             <div class="form-floating mb-3">
-                {{ form_widget(form.description, {attr: {class: "form-control", placeholder: "Titre", 'novalidate': 'novalidate'}})}}
+                {{ form_widget(form.description, {attr: {class: "form-control", value: animal.description, 'novalidate': 'novalidate'}})}}
                 {{ form_label(form.description)}}
                 {{ form_errors(form.description)}}
             </div>
 
             <div>
-                {{form_row(form.age)}}
+                {{form_row(form.age, {attr: {value: animal.age, 'novalidate': 'novalidate'}})}}
             </div>
 
-            <div class="col-md-12">
+            <div class="form-floating mb-3">
                 {{ form_row(form.type, {'attr':{'class': 'form-control', 'novalidate': 'novalidate'}})}}
             </div>
 
             <div class="form-floating mb-3">
-                {{ form_widget(form.race, {attr: {class: "form-control mb-3", placeholder: "Race", 'novalidate': 'novalidate'}})}}
+                {{ form_widget(form.race, {attr: {class: "form-control mb-3", value: animal.race, 'novalidate': 'novalidate'}})}}
                 {{ form_label(form.race)}}
                 {{ form_errors(form.race)}}
             </div>
@@ -49,7 +49,7 @@
                 Genre
             </div>
             <div>
-                {{ form_widget(form.gender, {attr: {class: "form-control mb-3",'novalidate': 'novalidate'}})}}
+                {{ form_widget(form.gender, {attr: {class: "form-control mb-3"}, value: animal.gender, 'novalidate': 'novalidate'})}}
                 {{ form_errors(form.gender)}}
             </div>
 
@@ -57,11 +57,9 @@
                 Stérilisé
             </div>
             <div>
-                {{ form_widget(form.sterilised, {attr: {class: "form-controle mb-3", 'novalidate': 'novalidate'}})}}
+                {{ form_widget(form.sterilised, {attr: {class: "form-controle mb-3", value: animal.sterilised, 'novalidate': 'novalidate'}})}}
                 {{ form_errors(form.sterilised)}}
             </div>
-
-
 
             <div>
                 {{form_row(form.picture)}}

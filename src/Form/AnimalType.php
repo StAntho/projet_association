@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Animal;
+use App\Entity\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,9 +29,12 @@ class AnimalType extends AbstractType
             ->add('age', IntegerType::class, [
                 'attr' => ['class' => 'form-floating mb-3'],
             ])
-            ->add('type', TextType::class, [
-                'label' => 'Type:',
-                'attr' => ['class' => 'form-floating mb-3'],
+            ->add('type', EntityType::class, [
+                'label' => 'Espèce',
+                'class' => Type::class,
+                'multiple' => false,
+                'expanded' => false,
+                'choice_label' => 'name',
             ])
             ->add('race', TextType::class, [
                 'label' => 'Race:',

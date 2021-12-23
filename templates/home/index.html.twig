@@ -7,7 +7,15 @@
 <div>
     <h1>Hello ! ✅</h1>
     <h2>Notre boutique</h2>  
-    {% for animal in animals %}
+    {% for product in products | reverse | slice(0, 4) %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{asset('img/product/' ~ product.image )}}" class="card-img-top" alt="{{product.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{product.name | capitalize}}</h5>
+                <p class="card-text"> {{product.description }}</p>
+                <a href="#" class="btn btn-primary">Ajouter à ma commande</a>
+            </div>
+        </div>
     {% else %}
         <p>Nous sommes en rupture de stock sur l'ensemble de nos produits.</p>
     {% endfor %}
@@ -22,12 +30,12 @@
                 {% endif %}
                 <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{ animal.name }}</h5>
+                    <h5 class="card-title">{{ animal.name | capitalize }}</h5>
                     <p class="card-text">{{animal.description}}</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{animal.age}}</li>
-                    <li class="list-group-item">{{animal.type}}</li>
+                    <li class="list-group-item">{{animal.type.name}}</li>
                     <li class="list-group-item">{{animal.race}}</li>
                     <li class="list-group-item">{{animal.gender}}</li>
                     <li class="list-group-item">

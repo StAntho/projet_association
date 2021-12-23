@@ -34,8 +34,10 @@ class DossierController extends AbstractController
     {
         $dossier = $this->doctrine->getRepository(Dossier::class)->find($dossier_id);
         $oldDossier = new Dossier();
-        $oldDossier->setIdentitycard($dossier->getIdentitycard());
-        $oldDossier->setAdoptionfile($dossier->getAdoptionfile());
+        if (!$dossier) {
+            $oldDossier->setIdentitycard($dossier->getIdentitycard());
+            $oldDossier->setAdoptionfile($dossier->getAdoptionfile());
+        }
 
         // On appelle la class DossierType qui contient les informations du formulaire pour ajouter un animal
         $form = $this->createForm(DossierType::class);

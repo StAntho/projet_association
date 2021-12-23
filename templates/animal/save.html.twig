@@ -1,11 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-  Liste des animaux!
+  Ajout d'un nouvel animal
 {% endblock %}
 
 {% block content %}
-
+<h1>Ajout d'un nouvel animal</h1>
     <div class="container">
 
         <div class="alert">
@@ -30,10 +30,8 @@
                 {{ form_label(form.description)}}
                 {{ form_errors(form.description)}}
             </div>
-            <div class="form-floating mb-3">
-                {{ form_label(form.type)}}
-                {{ form_widget(form.type, {attr: {class: "form-control mb-3", placeholder: "Type"}})}}
-                {{ form_errors(form.type)}}
+            <div class="col-md-12">
+                {{ form_row(form.type, {'attr':{'class': 'form-control'}}) }}                   
             </div>
 
             <div>

@@ -2,9 +2,15 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Query;
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\SearchProduct;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\QueryBuilder as ORMQueryBuilder;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,27 +20,52 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Product::class);
+        $this->paginator = $paginator;
     }
 
-    // /**
-    //  * @return Product[] Returns an array of Product objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return PaginationInterface
+     */
+    public function productSearch(SearchProduct $search): PaginationInterface
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('cat', 'p')
+            ->join('p.category', 'cat');
+
+        if (!empty($search->word)) {
+            $query = $query
+                ->andWhere('p.name LIKE :word')
+                ->setParameter('word', "%{$search->word}%");
+        }
+
+        if (!empty($search->price)) {
+            $query = $query
+                ->andWhere('p.price < :price')
+                ->setParameter('price', $search->price);
+        }
+
+        // if (!empty($search->inStock)) {
+        //     $query = $query
+        //         ->andWhere('p.inStock = 1');
+        // }
+
+        if (!empty($search->categories)) {
+            $query = $query
+                ->andWhere('cat.id IN (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            10
+        );
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Product

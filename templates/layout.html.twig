@@ -14,6 +14,7 @@
         <a class="btn btn-primary" href="#">Back Office</a>
       {% endif %}
       {% if app.user %}
+      <a class="p-2 text-dark" href="{{path('user_dossier_list', {user_id:app.user.id})}}">Mes dossiers</a>
       <a class="p-2 text-dark" href="{{ path('app_logout') }}">Se deconnecter</a>
       {% else %}
       <a class="btn btn-outline-primary" href="{{ path('app_register') }}">S'inscrire</a>

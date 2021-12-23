@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Animal;
 use App\Form\AnimalType;
+use App\Entity\SearchAnimal;
+use App\Form\SearchAnimalType;
+use App\Repository\AnimalRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,17 +15,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnimalController extends AbstractController
 {
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, AnimalRepository $repository)
     {
         $this->doctrine = $doctrine;
+        $this->repository = $repository;
     }
 
     #[Route('/animal', name: 'animal_list')]
-    public function index(): Response
+    public function index(Request $request, AnimalRepository $repository): Response
     {
-        $animals = $this->doctrine->getRepository(Animal::class)->findAll();
+        $search = new SearchAnimal();
+        $search->page = $request->get('page', 1);
+        $form = $this->createForm(SearchAnimalType::class, $search);
+        $form->handleRequest($request);
+        $animals = $repository->animalSearch($search);
+
         return $this->render('animal/index.html.twig', [
-            'animals' => $animals,
+            'all' => $animals,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -41,7 +51,7 @@ class AnimalController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $picture = $form->get('picture')->getData();
-            $pictureName = md5(uniqid()).'.'. $picture->guessExtension();
+            $pictureName = md5(uniqid()) . '.' . $picture->guessExtension();
 
             $picture->move(
                 // $this->getParameter permet de récupérer la valeur d'un paramètre définit dans le fichier
@@ -54,7 +64,7 @@ class AnimalController extends AbstractController
             $animal->setReserved(false);
 
             $animal->setSterilised(false);
-            
+
             $animal->setDateArrived(new \DateTime());
 
             // On le persist et l'enregistre en BDD
@@ -71,15 +81,13 @@ class AnimalController extends AbstractController
         return $this->render("animal/save.html.twig", [
             'form' => $form->createView()
         ]);
-
     }
 
     #[Route('/animal/show/{id}', name: 'animal_show')]
-    public function show(Animal $animal) {
+    public function show(Animal $animal)
+    {
         return $this->render("animal/show.html.twig", [
             'animal' => $animal
         ]);
-
     }
-
 }

@@ -15,23 +15,7 @@
     Notre boutique
   </h1>
 
-  {# <div class="container">
-        <h2>Gestion produits</h2>
-    #}
-  {# <table class="table table-bordered table-dark">
-     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nom produit</th>
-      <th scope="col">Image</th> 
-      <th scope="col">Description</th>
-      <th scope="col">Categorie</th>
-      <th scope="col">Prix</th>
-      <th scope="col">Supprimer</th>
-      <th scope="col">Editer</th>
 
-     </tr>
-        </thead> #}
   <div class="container">
     <div class="row row-cols-1 row-cols-md-2 g-4">
       {% for product in products %}
@@ -57,19 +41,5 @@
       {% endfor %}
     </div>
   </div>
-  {# <tr>
-      <th scope="row"> {{product.id}} </th>
-      <td> {{product.name}} </td>
-      <td><img src="{{asset("img/product/" ~ product.image)}}" class="card-img-top" alt="{{product.name}}" style="width:50px; height:50px" ></td>
-      <td> {{product.description}} </td>
-      <td> {{product.category.name}} </td>
-      <td> {{product.price}} </td>
-      <td> {{product.quantity}} </td>
-      {# <td><a class="btn btn-danger" href="index.php?page=ProduitDelete&id=<?= $produit->getId() ?>">Supprimer</a></td> #}
-  {# <td><a class="btn btn-info" href="index.php?page=UpdateProduit&id=<?= $produit->getId() ?>">Editer</a></td> #}
-  {# </tr> #}
 
-  {# </tbody>
- </table> #}
-  {# </div> #}
 {% endblock %}

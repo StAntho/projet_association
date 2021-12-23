@@ -30,7 +30,7 @@ class AnimalType extends AbstractType
                 'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('type', EntityType::class, [
-                'label' => 'Catégorie',
+                'label' => 'Espèce',
                 'class' => Type::class,
                 'multiple' => false,
                 'expanded' => false,

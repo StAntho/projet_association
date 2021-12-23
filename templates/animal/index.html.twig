@@ -64,7 +64,16 @@
                 class="card-link">
                 En détail
               </a>
-              <a href="#" class="card-link">Mettre à jour</a>
+              {% if animal.reserved %}
+              {% else %}
+              <a href="{{
+                path('user_create_dossier', {
+                    user_id: app.user.id,
+                    animal_id: animal.id
+                })
+                }}" class="card-link">Adopter cet animal
+              </a>
+              {% endif %}
             </div>
           </div>
         </div>

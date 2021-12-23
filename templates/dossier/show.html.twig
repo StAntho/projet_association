@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Hello DossierController!{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% if user_id == app.user.id %}
+    Dossier sur l'animal {{ dossier.animal.name }}
+    
+    <a href={{
+        path('dossier_save', {
+            dossier_id: dossier.id
+        })
+    }}
+    >
+    Mettre à jour le dossier
+    </a>
+    <br>
+    {% endif %}
+
+    <a href={{
+        path('user_dossier_list', {
+            user_id: app.user.id
+        })
+    }}
+    >
+    Retour à mes dossier
+    </a>
+    
+</div>
+{% endblock %}

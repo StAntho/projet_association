@@ -3,18 +3,56 @@
 {% block title %}Boutique{% endblock %}
 
 {% block content %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Notre boutique</h1>
+<h1>Notre boutique</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Aka-e/OneDrive/Bureau/Projet/projet_association/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Aka-e/OneDrive/Bureau/Projet/projet_association/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
-    </ul>
+<div>
+    <div>
+        {{ form_start(form) }} 
+            <div id="search">
+                <div>{{ form_row(form.word)}}</div>
+                <div>{{ form_row(form.price)}}</div>
+                <div>{{ form_row(form.categories)}}</div>
+                <div>
+                    <button type="submit" class="btn btn-secondary">Filtrer</button>
+                </div>
+            </div>
+        {{ form_end(form) }} 
+    </div>
+
+    <div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for product in all %}
+        <div class="col" style="max-width: 20rem;">
+          <div class="card border-secondary mb-3 bg-light mb-3"
+            style="max-width: 18rem;">
+            <img src="{{ asset('img/product/' ~ product.image) }}"
+              class="card-img-top"
+              alt="{{ product.name }}"
+              style="width:286px; height:181px" />
+
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ product.name | capitalize }}
+              </h5>
+              <h6 class="card-price">
+                {{ product.price }} €
+              </h6>
+
+              <a href="#" class="card-link">
+                Détails
+              </a>
+              <a href="#" class="card-link btn btn-primary">Ajouter panier</a>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p>Nous sommes en rupture de stock sur l'ensemble de nos produits.</p>
+      {% endfor %}
+    </div>
+  </div>
+    <div class="pagination">
+        {{ knp_pagination_render(all) }}
+    </div>
 </div>
 {% endblock %}

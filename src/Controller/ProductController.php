@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\SearchProduct;
 use App\Form\ProductType;
+use App\Form\SearchProductType;
+use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,11 +15,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product', name: 'product')]
-    public function index(): Response
+    /**
+     * @var ProductRepository
+     */
+    private $repository;
+
+    public function __construct(ProductRepository $repository)
     {
+        $repository = $this->repository;
+    }
+
+    #[Route('/products', name: 'products')]
+    public function index(Request $request, ProductRepository $repository): Response
+    {
+        $search = new SearchProduct();
+        $search->page = $request->get('page', 1);
+        $form = $this->createForm(SearchProductType::class, $search);
+        $form->handleRequest($request);
+        $products = $repository->productSearch($search);
+
         return $this->render('product/index.html.twig', [
-            'controller_name' => 'ProductController',
+            'all' => $products,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -41,7 +61,7 @@ class ProductController extends AbstractController
             $em->persist($product);
             $em->flush();
             $this->addFlash('success', 'Produit ajouté avec succes');
-            return $this->redirectToRoute('product');
+            return $this->redirectToRoute('products');
         }
 
         return $this->render('product/save.html.twig', [

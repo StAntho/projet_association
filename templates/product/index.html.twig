@@ -36,21 +36,33 @@
     <div class="row row-cols-1 row-cols-md-2 g-4">
       {% for product in products %}
         <div class="col" style="max-width: 20rem;">
-          <div class="card" style="max-width: 18rem;">
+          <div class="card border-secondary mb-3 bg-light mb-3"
+            style="max-width: 18rem;">
             <img src="{{ asset('img/product/' ~ product.image) }}"
               class="card-img-top"
               alt="{{ product.name }}"
               style="width:286px; height:181px" />
+
             <div class="card-body">
               <h5 class="card-title">
                 {{ product.name }}
               </h5>
-              <p class="card-text">
-                {{ product.description }}
-              </p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">{{ product.price }}</small>
+              <h6 class="card-price">
+                {{ product.price }} €
+              </h6>
+
+              <a href="{{
+                path(
+                  'product_show',
+                  {
+                    id: product.id
+                  }
+                )
+                }}"
+                class="card-link">
+                Détails
+              </a>
+              <a href="#" class="card-link btn btn-primary">Ajouter panier</a>
             </div>
           </div>
         </div>

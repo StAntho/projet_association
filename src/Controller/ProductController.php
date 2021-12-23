@@ -40,7 +40,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/product/save', name: 'product_save')]
+    #[Route('/product/save', name: 'product_save', methods: ["POST", "GET"])]
     public function save(Request $request, ManagerRegistry $mr)
     {
         $product = new Product();
@@ -66,6 +66,14 @@ class ProductController extends AbstractController
 
         return $this->render('product/save.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/product/show/{id}', name: 'product_show')]
+    public function show(Product $product)
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
         ]);
     }
 }

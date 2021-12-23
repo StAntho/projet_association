@@ -23,8 +23,13 @@ class AnimalRepository extends ServiceEntityRepository
         $this->paginator = $paginator;
     }
 
-    public function findByDateArrivedThirtyDays($dateStart, $dateNow)
-    {
+
+    /*
+        La requête retourne tous les animaux où dateArrived est entre dateStart et dateNow
+        La valeur de dateStart est de 30j avant dateNow
+        Les dates prennent format année-mois-jour puis heure:minute:second
+    */
+    public function findByDateArrivedThirtyDays($dateStart, $dateNow) {
         return $this->createQueryBuilder('a')
             ->where('a.dateArrived BETWEEN :start AND :end')
             ->setParameter('start', $dateStart->format('Y-m-d H:m:s'))

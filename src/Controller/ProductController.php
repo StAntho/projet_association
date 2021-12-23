@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\SearchProduct;
 use App\Form\ProductType;
+use App\Form\AddToCartType;
 use App\Form\SearchProductType;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;

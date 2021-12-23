@@ -23,7 +23,7 @@ class AnimalType extends AbstractType
     ): void {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name:',
+                'label' => 'Nom de l\'animal',
                 'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('age', IntegerType::class, [
@@ -37,7 +37,7 @@ class AnimalType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('race', TextType::class, [
-                'label' => 'Race:',
+                'label' => 'Race',
                 'attr' => ['class' => 'form-floating mb-3'],
             ])
             ->add('description', TextareaType::class, [
@@ -45,12 +45,19 @@ class AnimalType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Image (JPEG/PNG)',
+                'required' => false
             ])
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'Mâle' => 'Mâle',
                     'Femelle' => 'Femelle',
                 ],
+            ])
+            ->add('sterilised', ChoiceType::class, [
+                'choices' => [
+                    'Oui' => 1,
+                    'Non' => 0
+                ]
             ])
             ->add('Ajouter', SubmitType::class);
     }

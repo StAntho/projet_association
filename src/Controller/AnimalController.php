@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Animal;
 use App\Form\AnimalType;
 use App\Entity\SearchAnimal;
+use App\Entity\Type;
 use App\Form\SearchAnimalType;
 use App\Repository\AnimalRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 
 class AnimalController extends AbstractController
 {
@@ -81,6 +83,68 @@ class AnimalController extends AbstractController
         return $this->render("animal/save.html.twig", [
             'form' => $form->createView()
         ]);
+    }
+
+    #[Route('/animal/update/{animalId}', name: 'animal_update', methods: ['POST', 'GET'])]
+    public function update($animalId, Request $request): Response
+    {
+        $animal = $this->doctrine->getRepository(Animal::class)->find($animalId);
+
+        $oldAnimal = new Animal;
+        $oldAnimal->setPicture($animal->getPicture());
+
+        $type = $animal->getType();
+
+        $picture = new File($this->getParameter('upload_file').$animal->getPicture());
+        $animal->setPicture($picture);
+
+        $form = $this->createForm(AnimalType::class, $animal);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('picture')->getData() !== null) {
+                $picture = $form->get('picture')->getData();
+                $pictureName = md5(uniqid()).'.'. $picture->guessExtension();
+    
+                $picture->move(
+                    // $this->getParameter permet de récupérer la valeur d'un paramètre définit dans le fichier
+                    // de config services.yaml
+                    $this->getParameter('upload_file'),
+                    $pictureName
+                );
+                $animal->setPicture($pictureName);
+            } else {
+                $animal->setPicture($oldAnimal->getPicture());
+            }
+
+            // On le persist et l'enregistre en BDD
+            $em = $this->doctrine->getManager();
+            $em->persist($animal);
+            $em->flush();
+
+            $this->addFlash("success", "Animal bien modifié");
+
+            // On retourne sur la liste des animaux
+            return $this->redirectToRoute("animal_list");
+        }
+
+        return $this->render("animal/update.html.twig", [
+            'form' => $form->createView(),
+            'animal' => $animal
+        ]);
+    }
+
+    #[Route("/animal/delete/{animalId}", name: 'animal_delete')]
+    public function delete($animalId): Response
+    {
+        $animal = $this->doctrine->getRepository(Animal::class)->find($animalId);
+
+        $em = $this->doctrine->getManager();
+        $em->remove($animal);
+        $em->flush();
+
+        return $this->redirectToRoute('animal_list');
     }
 
     #[Route('/animal/show/{id}', name: 'animal_show')]

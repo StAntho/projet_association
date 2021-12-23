@@ -60,6 +60,7 @@
               </li>
             </ul>
             <div class="card-body">
+<<<<<<< HEAD
               <a href="{{ path('animal_show',{id: animal.id} ) }}" class="card-link">
                 En détail
               </a>
@@ -73,6 +74,11 @@
                 }}" class="card-link">Adopter cet animal
               </a>
               {% endif %}
+=======
+              <a href="{{path('animal_show', {id: animal.id})}}" class="card-link">En détail</a>
+              <a href="{{path('animal_update', {animalId: animal.id})}}" class="card-link">Mettre à jour</a>
+              <a href="{{path('animal_delete', {animalId: animal.id})}}" class="card-link">Supprimer</a>
+>>>>>>> 513dfecd2b4a35819485056f3001693c20c9c951
             </div>
           </div>
         </div>

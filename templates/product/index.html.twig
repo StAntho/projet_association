@@ -6,11 +6,11 @@
 
 {% block content %}
 
-<h1>Notre boutique</h1>
+<h1 class="page-title">Notre boutique</h1>
 
 
 <div>
-    <div>
+    <div class="animal-search">
         {{ form_start(form) }} 
             <div id="search">
                 <div>{{ form_row(form.word)}}</div>
@@ -44,7 +44,8 @@
               <a href="#" class="card-link">
                 Détails
               </a>
-              <a href="#" class="card-link btn btn-primary">Ajouter panier</a>
+
+              {% if app.user %} <a href="#" class="card-link btn btn-primary">Ajouter panier</a>{% endif %}
             </div>
           </div>
         </div>

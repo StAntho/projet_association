@@ -26,8 +26,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureDashboard(): Dashboard
     {
-        return Dashboard::new()
-            ->setTitle('Projet Association');
+        return Dashboard::new()->setTitle('Projet Association');
     }
 
     public function configureMenuItems(): iterable
@@ -37,15 +36,23 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Animals'),
             MenuItem::linkToCrud('Animals', 'fas fa-dog', Animal::class),
-            MenuItem::linkToCrud('Espèces', 'fas fa-dog', Type::class),
+            MenuItem::linkToCrud('Species', 'fas fa-paw', Type::class),
 
             MenuItem::section('Products'),
-            MenuItem::linkToCrud('Products', 'fas fa-euro-sign', Product::class),
-            MenuItem::linkToCrud('Catégories', 'fas fa-euro-sign', Category::class),
+            MenuItem::linkToCrud(
+                'Products',
+                'fas fa-store-alt',
+                Product::class
+            ),
+            MenuItem::linkToCrud(
+                'Catégories',
+                'fas fa-shopping-bag',
+                Category::class
+            ),
 
             MenuItem::section('Users'),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
-            MenuItem::linkToCrud('Dossiers', 'fa fa-user', Dossier::class),
+            MenuItem::linkToCrud('Folders', 'fas fa-folder', Dossier::class),
         ];
     }
 }

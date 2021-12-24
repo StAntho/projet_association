@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+  <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 border-bottom shadow-sm">
     <div class=" header-links d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
       {# <h5 class="my-0 mr-md-auto font-weight-normal">
         <a href="{{ path('index') }}">Company name</a>
@@ -35,17 +35,17 @@
   {% block content %}
 
   {% endblock %}
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+  <footer class=" my-md-5  border-top">
     <div class="row">
       <div class="col-12 col-md">
         <img class="mb-2"
-          src="/docs/4.3/assets/brand/bootstrap-solid.svg"
-          alt=""
-          width="24"
-          height="24" />
+          src="{{asset('image/dog.png')}}"
+          alt="logo"
+          width="200"
+          height="200" />
         <small class="d-block mb-3 text-muted">&copy; 2021-2022</small>
       </div>
-      <div class="col-6 col-md">
+      <div class="col-6 col-md pt-4">
         <h5>
           Features
         </h5>
@@ -54,7 +54,7 @@
           <li><a class="text-muted" href="#">Random feature</a></li>
         </ul>
       </div>
-      <div class="col-6 col-md">
+      <div class="col-6 col-md pt-4">
         <h5>
           Resources
         </h5>
@@ -63,7 +63,7 @@
           <li><a class="text-muted" href="#">Resource name</a></li>
         </ul>
       </div>
-      <div class="col-6 col-md">
+      <div class="col-6 col-md pt-4">
         <h5>
           About
         </h5>

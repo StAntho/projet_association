@@ -19,32 +19,38 @@
         </div>
 
         {{ form_start(form) }}
+            {# Input text pour le nom #}
             <div class="form-floating mb-3">
                 {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Name", 'novalidate': 'novalidate'}})}}
                 {{ form_label(form.name)}}
                 {{ form_errors(form.name)}}
             </div>
 
+            {# Textarea pour la description #}
             <div class="form-floating mb-3">
                 {{ form_widget(form.description, {attr: {class: "form-control", placeholder: "Titre", 'novalidate': 'novalidate'}})}}
                 {{ form_label(form.description)}}
                 {{ form_errors(form.description)}}
             </div>
 
+            {# Input number pour l'âge #}
             <div>
                 {{form_row(form.age)}}
             </div>
 
+            {# Select pour l'espèce #}
             <div class="col-md-12">
                 {{ form_row(form.type, {'attr':{'class': 'form-control', 'novalidate': 'novalidate'}})}}
             </div>
 
+            {# Input text pour la race #}
             <div class="form-floating mb-3">
                 {{ form_widget(form.race, {attr: {class: "form-control mb-3", placeholder: "Race", 'novalidate': 'novalidate'}})}}
                 {{ form_label(form.race)}}
                 {{ form_errors(form.race)}}
             </div>
 
+            {# Select pour le genre #}
             <div>
                 Genre
             </div>
@@ -53,6 +59,7 @@
                 {{ form_errors(form.gender)}}
             </div>
 
+            {# Select pour la stérilisation #}
             <div>
                 Stérilisé
             </div>
@@ -61,14 +68,14 @@
                 {{ form_errors(form.sterilised)}}
             </div>
 
-
-
+            {# Input file pour l'image #}
             <div>
-                {{form_row(form.picture)}}
+                {{form_row(form.picture, {attr: {required: true}})}}
             </div>
-            
+
+            {# Bouton valider #}
             <div>
-                {{form_row(form.Ajouter)}}
+                {{form_row(form.Valider)}}
             </div>
         {{ form_end(form) }}
     </div>

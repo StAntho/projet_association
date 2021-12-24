@@ -24,24 +24,24 @@ class AnimalType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom de l\'animal',
-                'attr' => ['class' => 'form-floating mb-3'],
+                'attr' => ['class' => 'form-floating mb-3']
             ])
             ->add('age', IntegerType::class, [
-                'attr' => ['class' => 'form-floating mb-3'],
+                'attr' => ['class' => 'form-floating mb-3']
             ])
             ->add('type', EntityType::class, [
                 'label' => 'Espèce',
                 'class' => Type::class,
                 'multiple' => false,
                 'expanded' => false,
-                'choice_label' => 'name',
+                'choice_label' => 'name'
             ])
             ->add('race', TextType::class, [
                 'label' => 'Race',
-                'attr' => ['class' => 'form-floating mb-3'],
+                'attr' => ['class' => 'form-floating mb-3']
             ])
             ->add('description', TextareaType::class, [
-                'label' => "Description de l'animal",
+                'label' => "Description de l'animal"
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Image (JPEG/PNG)',
@@ -50,8 +50,8 @@ class AnimalType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'Mâle' => 'Mâle',
-                    'Femelle' => 'Femelle',
-                ],
+                    'Femelle' => 'Femelle'
+                ]
             ])
             ->add('sterilised', ChoiceType::class, [
                 'choices' => [
@@ -59,13 +59,13 @@ class AnimalType extends AbstractType
                     'Non' => 0
                 ]
             ])
-            ->add('Ajouter', SubmitType::class);
+            ->add('Valider', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Animal::class,
+            'data_class' => Animal::class
         ]);
     }
 }

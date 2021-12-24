@@ -1,17 +1,18 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-  Liste des animaux
+    Liste des animaux
 {% endblock %}
 
 {% block content %}
-  <h1>
+<h1>
     Nos animaux
-  </h1>
+</h1>
 
 <div>
     <div>
-        {{ form_start(form) }} 
+        {{ form_start(form) }}
+            {# Filter #}
             <div id="search">
                 <div>{{ form_row(form.word)}}</div>
                 <div>{{ form_row(form.age)}}</div>

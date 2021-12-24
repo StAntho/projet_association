@@ -34,7 +34,7 @@ class AnimalController extends AbstractController
 
         return $this->render('animal/index.html.twig', [
             'all' => $animals,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -63,10 +63,10 @@ class AnimalController extends AbstractController
             );
             $animal->setPicture($pictureName);
 
+            // On rentre le champs par défaut
             $animal->setReserved(false);
 
-            $animal->setSterilised(false);
-
+            // On met la date de sauvegarde
             $animal->setDateArrived(new \DateTime());
 
             // On le persist et l'enregistre en BDD
@@ -74,6 +74,7 @@ class AnimalController extends AbstractController
             $em->persist($animal);
             $em->flush();
 
+            // On notifie l'utilisateur que l'animal est bien enregistré
             $this->addFlash("success", "Animal bien enregistré");
 
             // On retourne sur la liste des animaux
@@ -88,12 +89,12 @@ class AnimalController extends AbstractController
     #[Route('/animal/update/{animalId}', name: 'animal_update', methods: ['POST', 'GET'])]
     public function update($animalId, Request $request): Response
     {
+        // On sélectionne le bonne animal selon l'ID
         $animal = $this->doctrine->getRepository(Animal::class)->find($animalId);
 
+        // On récupère l'ancienne image de notre animal
         $oldAnimal = new Animal;
         $oldAnimal->setPicture($animal->getPicture());
-
-        $type = $animal->getType();
 
         $picture = new File($this->getParameter('upload_file').$animal->getPicture());
         $animal->setPicture($picture);
@@ -103,6 +104,7 @@ class AnimalController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Si une photo a été rajoutée alors on mets la nouvelle l'image
             if ($form->get('picture')->getData() !== null) {
                 $picture = $form->get('picture')->getData();
                 $pictureName = md5(uniqid()).'.'. $picture->guessExtension();
@@ -115,6 +117,7 @@ class AnimalController extends AbstractController
                 );
                 $animal->setPicture($pictureName);
             } else {
+                // Sinon on remets l'ancienne image
                 $animal->setPicture($oldAnimal->getPicture());
             }
 
@@ -123,7 +126,8 @@ class AnimalController extends AbstractController
             $em->persist($animal);
             $em->flush();
 
-            $this->addFlash("success", "Animal bien modifié");
+            // On notifie l'utilisateur que l'animal a bien été modifié
+            $this->addFlash("success", "Animal a bien été modifié");
 
             // On retourne sur la liste des animaux
             return $this->redirectToRoute("animal_list");
@@ -140,6 +144,7 @@ class AnimalController extends AbstractController
     {
         $animal = $this->doctrine->getRepository(Animal::class)->find($animalId);
 
+        // Suppression de l'animal
         $em = $this->doctrine->getManager();
         $em->remove($animal);
         $em->flush();

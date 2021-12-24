@@ -60,7 +60,7 @@ class Order
     /**
      * @return Collection|OrderItem[]
      */
-    public function getItems(): Collection
+    public function getItems()
     {
         return $this->items;
     }

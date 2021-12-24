@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div>
+<div class="home-shop-body">
     <h1>Hello ! ✅</h1>
     <h2>Notre boutique</h2>  
     {% for product in products | reverse | slice(0, 4) %}
@@ -20,7 +20,7 @@
         <p>Nous sommes en rupture de stock sur l'ensemble de nos produits.</p>
     {% endfor %}
 </div>
-<div>
+<div class="home-animal-body">
     <h2>Nos derniers arrivants</h2>
 
         {% for animal in animals %}
@@ -57,16 +57,16 @@
         {% endfor %}
 
 </div>
-<div>
+<div class="home-donation-body">
     {% set count = 0 %}
     {% for donation in total_donation %}
         {% set count = count +  donation.amount %} 
     {% endfor %}
-    Total des donations: {{ count }}
+    Total des donations : {{ count }}
     <a href="{{
         path('donation')
     }}">
-    <h2>Faire un don</h2>
+    <h2 ><button class="donation-button">Faire un don</button></h2>
     </a>
 
 </div>

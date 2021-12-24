@@ -1,28 +1,31 @@
-header{
+@import url('homepage.css');
+
+header {
     background-color: rgb(54, 90, 51) !important;
 }
 
 .header-links {
-    margin:auto ;
+    margin: auto;
 }
 
 header nav a {
 
-    color: white!important;
-    text-align: center  !important;
+    color: white !important;
+    text-align: center !important;
     text-transform: uppercase;
     font-size: 1em;
     font-weight: bold;
     text-decoration: none;
-    
+
 }
 
 header nav a:hover {
-    
+
     text-decoration: underline;
 }
 
-.signup-button, .login-button {
+.signup-button,
+.login-button {
     margin: 5px;
     background-color: #222;
     color: white !important;
@@ -32,18 +35,21 @@ header nav a:hover {
 
 
 
-.signup-button:hover, .login-button:hover {
+.signup-button:hover,
+.login-button:hover {
     background-color: white;
     color: #222 !important;
 }
 
 
 
-.home-shop-body, .home-animal-body, .home-donation-body {
+.home-shop-body,
+.home-animal-body,
+.home-donation-body {
     text-align: center;
 }
 
-.home-donation-body{
+.home-donation-body {
     text-transform: uppercase;
     font-size: 1em;
 }
@@ -66,14 +72,14 @@ header nav a:hover {
 footer {
 
     background-color: rgb(54, 90, 51) !important;
-    color: white!important;
-    text-align: center  !important;
+    color: white !important;
+    text-align: center !important;
     text-transform: uppercase;
     font-size: 1em;
     font-weight: bold;
     text-decoration: none;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
-   
+
 }
 
 form {

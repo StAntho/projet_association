@@ -3,71 +3,73 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block content %}
-
-<div class="home-shop-body">
-    <h1>Hello ! ✅</h1>
+<div class="home-introduce">
+<h1>Adopte Association</h1>
+</div>
+<div class="home-shop-body homeblock">
     <h2>Notre boutique</h2>  
+    <div class="flexDiv">
     {% for product in products | reverse | slice(0, 4) %}
         <div class="card" style="width: 18rem;">
-            <img src="{{asset('img/product/' ~ product.image )}}" class="card-img-top" alt="{{product.name}}">
+            <img src="{{asset('img/product/' ~ product.image )}}" class="card-img-top homecard" alt="{{product.name}}">
             <div class="card-body">
-                <h5 class="card-title">{{product.name | capitalize}}</h5>
-                <p class="card-text"> {{product.description }}</p>
+                <div class="flexDiv">
+                    <h5 class="card-title">{{product.name | capitalize}}</h5>
+                    <p>{{product.price}}€</p>
+                </div>
+                <p class="card-text"> {{product.description | capitalize  }}</p>
                 <a href="#" class="btn btn-primary">Ajouter à ma commande</a>
             </div>
         </div>
     {% else %}
         <p>Nous sommes en rupture de stock sur l'ensemble de nos produits.</p>
     {% endfor %}
+    </div>
 </div>
-<div class="home-animal-body">
+<div class="home-animal-body homeblock">
     <h2>Nos derniers arrivants</h2>
-
+        <div class="flexDiv">
         {% for animal in animals %}
             <div class="card" style="width: 18rem;">
                 {% if animal.reserved %}
                 <p>Réservé(e)</p>
                 {% endif %}
-                <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top" alt="...">
+                <img src="{{asset("img/uploads/" ~ animal.picture)}}" class="card-img-top homecard" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">{{ animal.name | capitalize }}</h5>
-                    <p class="card-text">{{animal.description}}</p>
+                    <h5 class="card-title">{{ animal.name | capitalize }} <small>{{animal.age}}an(s)</small></h5>
+                    <p class="card-text">{{animal.description | capitalize }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{animal.age}}</li>
-                    <li class="list-group-item">{{animal.type.name}}</li>
-                    <li class="list-group-item">{{animal.race}}</li>
-                    <li class="list-group-item">{{animal.gender}}</li>
-                    <li class="list-group-item">
+                    <li class="list-group-item">{{animal.type.name}} - {{animal.race | capitalize }}</li>
+                    <li class="list-group-item">{{animal.gender}} - 
                         {% if animal.sterilised %}
                         Stéril(e)
                         {% else %}
                         Non Stéril(e)
                         {% endif %}
                     </li>
-                    <li class="list-group-item">Arrivé le {{ animal.Datearrived|date('d-m-y', "Europe/Paris") }}</li>
+                    <li class="list-group-item">Arrivé(e) le {{ animal.Datearrived|date('d-m-y', "Europe/Paris") }}</li>
                 </ul>
                 <div class="card-body">
                     <a href="{{ path('animal_show', {id:animal.id} ) }}" class="card-link">En détail</a>
-                    <a href="#" class="card-link">Mettre à jour</a>
+                    {# <a href="#" class="card-link">Mettre à jour</a> #}
                 </div>
             </div>
         {% else %}
             <p>Nous n'avons plus d'animaux à faire adopter pour le moment.</p>
         {% endfor %}
+        </div>
 
 </div>
-<div class="home-donation-body">
+<div class="home-donation-body homeblock">
+    <h2 >Donation</h2>
     {% set count = 0 %}
     {% for donation in total_donation %}
         {% set count = count +  donation.amount %} 
     {% endfor %}
-    Total des donations : {{ count }}
-    <a href="{{
-        path('donation')
-    }}">
-    <h2 ><button class="donation-button">Faire un don</button></h2>
-    </a>
+    Total des donations : {{ count }}€
+    
+    <a href="{{path('donation')}}" class="donation-button">Faire un don</a>
 
 </div>
 {% endblock %}

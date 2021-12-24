@@ -12,7 +12,7 @@
         <a class="p-2" href="{{path('products')}}">Notre boutique</a>
       </nav>
       {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary" href="#">Back Office</a>
+        <a class="btn btn-primary" href="{{path('admin')}}">Back Office</a>
       {% endif %}
       {% if app.user %}
       <a class="p-2 text-dark" href="{{path('user_dossier_list', {user_id:app.user.id})}}">Mes dossiers</a>

@@ -1,0 +1,132 @@
+header{
+    background-color: rgb(54, 90, 51) !important;
+}
+
+.header-links {
+    margin:auto ;
+}
+
+header nav a {
+
+    color: white!important;
+    text-align: center  !important;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+
+header nav a:hover {
+    
+    text-decoration: underline;
+}
+
+.signup-button, .login-button {
+    margin: 5px;
+    background-color: #222;
+    color: white !important;
+    border: #222 3px solid !important;
+    text-transform: uppercase;
+}
+
+
+
+.signup-button:hover, .login-button:hover {
+    background-color: white;
+    color: #222 !important;
+}
+
+
+
+.home-shop-body, .home-animal-body, .home-donation-body {
+    text-align: center;
+}
+
+.home-donation-body{
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+.donation-button {
+    text-transform: uppercase;
+    color: white !important;
+    font-size: 24px;
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(54, 90, 51) !important;
+    border: 3px solid rgb(54, 90, 51) !important;
+}
+
+.donation-button:hover {
+    background-color: white !important;
+    color: rgb(54, 90, 51) !important;
+}
+
+footer {
+
+    background-color: rgb(54, 90, 51) !important;
+    color: white!important;
+    text-align: center  !important;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+   
+}
+
+form {
+    display: block;
+    margin: auto;
+    width: 30%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: rgb(54, 90, 51) !important;
+    color: white !important;
+    font-size: 24px;
+    padding: 5%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+form button {
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: rgb(54, 90, 51) !important;
+    color: white !important;
+    font-size: 24px;
+    padding: 5%;
+    border: 3px solid white !important;
+}
+
+form button:hover {
+
+    background-color: white !important;
+    color: rgb(54, 90, 51) !important;
+}
+
+.card {
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.card a {
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: rgb(54, 90, 51) !important;
+    color: white !important;
+    padding: 5%;
+    border: 3px solid rgb(54, 90, 51) !important;
+}
+
+.card a:hover {
+    background-color: white !important;
+    color: rgb(54, 90, 51) !important;
+}

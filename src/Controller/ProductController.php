@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\SearchProduct;
 use App\Form\ProductType;
 use App\Form\AddToCartType;
+use App\Manager\CartManager;
 use App\Form\SearchProductType;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -13,6 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+/**
+ * Class ProductController
+ * @package App\Controller
+ */
 
 class ProductController extends AbstractController
 {
@@ -27,13 +33,28 @@ class ProductController extends AbstractController
     }
 
     #[Route('/products', name: 'products')]
-    public function index(Request $request, ProductRepository $repository): Response
+    public function index(Product $product, Request $request, CartManager $cartManager, ProductRepository $repository): Response
     {
         $search = new SearchProduct();
         $search->page = $request->get('page', 1);
         $form = $this->createForm(SearchProductType::class, $search);
+        #$form = $this->createForm(AddToCartType::class, $search);
         $form->handleRequest($request);
         $products = $repository->productSearch($search);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $item = $form->getData();
+            $item->setProduct($product);
+
+            $cart = $cartManager->getCurrentCart();
+            $cart
+                ->addItem($item)
+                ->setUpdatedAt(new \DateTime());
+
+            $cartManager->save($cart);
+
+            return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
+        }
 
         return $this->render('product/index.html.twig', [
             'all' => $products,

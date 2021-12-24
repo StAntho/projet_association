@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <header>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h5 class="my-0 mr-md-auto font-weight-normal">
+  <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+    <div class=" header-links d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+      {# <h5 class="my-0 mr-md-auto font-weight-normal">
         <a href="{{ path('index') }}">Company name</a>
-      </h5>
+      </h5> #}
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="{{path('animal_list')}}">Nos animaux</a>
-        <a class="p-2 text-dark" href="{{path('products')}}">Notre boutique</a>
+        <a href="{{ path('index') }}">Company name</a>
+        <a class="p-2" href="{{path('animal_list')}}">Nos animaux</a>
+        <a class="p-2" href="{{path('products')}}">Notre boutique</a>
       </nav>
       {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-primary" href="#">Back Office</a>
@@ -17,8 +18,8 @@
       <a class="p-2 text-dark" href="{{path('user_dossier_list', {user_id:app.user.id})}}">Mes dossiers</a>
       <a class="p-2 text-dark" href="{{ path('app_logout') }}">Se deconnecter</a>
       {% else %}
-      <a class="btn btn-outline-primary" href="{{ path('app_register') }}">S'inscrire</a>
-      <a class="btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
+      <a class="signup-button btn btn-outline-primary" href="{{ path('app_register') }}">S'inscrire</a>
+      <a class="login-button btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
       {% endif %}
     </div>
   </header>

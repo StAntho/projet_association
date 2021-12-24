@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Manager;
+namespace App\Entity;
 
 use App\Entity\Order;
 use App\Factory\OrderFactory;
@@ -8,7 +8,6 @@ use App\Storage\CartSessionStorage;
 
 /**
  * Class CartManager
- * @package App\Manager
  */
 class CartManager
 {
@@ -28,22 +27,22 @@ class CartManager
     private $entityManager;
 
 
-    /**
-     * CartManager constructor.
-     *
-     * @param CartSessionStorage $cartStorage
-     * @param OrderFactory $orderFactory
-     * @param EntityManagerInterface $entityManager
-     */
-    public function __construct(
-        CartSessionStorage $cartStorage,
-        OrderFactory $orderFactory,
-        EntityManagerInterface $entityManager
-    ) {
-        $this->cartSessionStorage = $cartStorage;
-        $this->cartFactory = $orderFactory;
-        $this->entityManager = $entityManager;
-    }
+    // /**
+    //  * CartManager constructor.
+    //  *
+    //  * @param CartSessionStorage $cartStorage
+    //  * @param OrderFactory $orderFactory
+    //  * @param EntityManagerInterface $entityManager
+    //  */
+    // public function __construct(
+    //     CartSessionStorage $cartStorage,
+    //     OrderFactory $orderFactory,
+    //     EntityManagerInterface $entityManager
+    // ) {
+    //     $this->cartSessionStorage = $cartStorage;
+    //     $this->cartFactory = $orderFactory;
+    //     $this->entityManager = $entityManager;
+    // }
 
     /**
      * Persists the cart in database and session.

@@ -26,9 +26,12 @@ class ProductController extends AbstractController
         $repository = $this->repository;
     }
 
+    //Créé un chemin et la fonction qui permet de filtrer les produits
     #[Route('/products', name: 'products')]
-    public function index(Request $request, ProductRepository $repository): Response
-    {
+    public function index(
+        Request $request,
+        ProductRepository $repository
+    ): Response {
         $search = new SearchProduct();
         $search->page = $request->get('page', 1);
         $form = $this->createForm(SearchProductType::class, $search);
@@ -41,38 +44,50 @@ class ProductController extends AbstractController
         ]);
     }
 
+    //Créé le chemin et la fonction qui permet d'enregistrer un produit dans la base de donnée
     #[Route('/product/save', name: 'product_save', methods: ["POST", "GET"])]
     public function save(Request $request, ManagerRegistry $mr)
     {
+        //On créé un nouveau produit
         $product = new Product();
+        // On appelle la class PostType qui contient les informations du formulaire pour ajouter un produit
+        // et on créé le formulaire lié
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-
+        // Si les données sont valides
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('image')->getData();
             $imageName = md5(uniqid()) . '.' . $image->guessExtension();
 
             $image->move(
+                // $this->getParameter permet de récupérer la valeur d'un paramètre définit dans le fichier
+                // de config services.yaml
                 $this->getParameter('product_uploade_file'),
                 $imageName
             );
             $product->setImage($imageName);
-
+            // On le persist et l'enregistre en BDD
             $em = $mr->getManager();
             $em->persist($product);
             $em->flush();
+            // On génère un message flash qui apparaîtra sur la page d'accueil pour valider l'enregistrement
+            // du produit auprès de l'utilisateur
             $this->addFlash('success', 'Produit ajouté avec succes');
+            // On retourne sur la page qui liste produit
             return $this->redirectToRoute('products');
         }
-
+        // On charge le template save en lui passant le formulaire dont on a besoin
         return $this->render('product/save.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
+    //Créé le chemin et la fonction qui permet de voir un seul produit
+    //en fonction de l'id
     #[Route('/product/show/{id}', name: 'product_show')]
     public function show(Product $product)
     {
+        //On créé la vue pour afficher le produit
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);

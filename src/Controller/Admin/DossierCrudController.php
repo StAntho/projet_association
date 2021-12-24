@@ -23,10 +23,10 @@ class DossierCrudController extends AbstractCrudController
             AssociationField::new('animal'),
             ChoiceField::new('status')->setChoices(
                 [
-                    1 => 'Nouveau',
-                    2 => 'En cours',
-                    3 => 'Validé',
-                    4 => 'Refusé',
+                    'Nouveau' => 1,
+                    'En cours' => 2,
+                    'Validé' => 3,
+                    'Refusé' => 4,
                 ]
             ),
             ImageField::new('adoptionfile')

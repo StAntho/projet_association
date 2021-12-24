@@ -33,7 +33,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/products', name: 'products')]
-    public function index(Product $product, Request $request, CartManager $cartManager, ProductRepository $repository): Response
+    public function index(Request $request, ProductRepository $repository): Response
     {
         $search = new SearchProduct();
         $search->page = $request->get('page', 1);

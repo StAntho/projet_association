@@ -65,13 +65,15 @@
               </a>
               {% if animal.reserved %}
               {% else %}
-              <a href="{{
-                path('user_create_dossier', {
-                    user_id: app.user.id,
-                    animal_id: animal.id
-                })
-                }}" class="card-link">Adopter cet animal
-              </a>
+                {% if app.user %}
+                  <a href="{{
+                    path('user_create_dossier', {
+                        user_id: app.user.id,
+                        animal_id: animal.id
+                    })
+                    }}" class="card-link">Adopter cet animal
+                  </a>
+                {% endif %}
               {% endif %}
             </div>
           </div>

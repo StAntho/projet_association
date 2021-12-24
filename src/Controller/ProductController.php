@@ -42,19 +42,19 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
         $products = $repository->productSearch($search);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $item = $form->getData();
-            $item->setProduct($product);
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $item = $form->getData();
+        //     $item->setProduct($product);
 
-            $cart = $cartManager->getCurrentCart();
-            $cart
-                ->addItem($item)
-                ->setUpdatedAt(new \DateTime());
+        //     $cart = $cartManager->getCurrentCart();
+        //     $cart
+        //         ->addItem($item)
+        //         ->setUpdatedAt(new \DateTime());
 
-            $cartManager->save($cart);
+        //     $cartManager->save($cart);
 
-            return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
-        }
+        //     return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
+        // }
 
         return $this->render('product/index.html.twig', [
             'all' => $products,

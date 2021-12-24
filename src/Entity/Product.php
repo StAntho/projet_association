@@ -27,8 +27,8 @@ class Product
         Assert\Length(
             min: 3,
             max: 20,
-            minMessage: "Le genre doit contenir au minimum {{ limit }} caractères",
-            maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
+            minMessage: "Le nom doit contenir au minimum {{ limit }} caractères",
+            maxMessage: "Le nom doit contenir au maximum {{ limit }} caractères"
         )
     ]
     private $name;
@@ -40,8 +40,8 @@ class Product
         Assert\Length(
             min: 3,
             max: 200,
-            minMessage: "Le genre doit contenir au minimum {{ limit }} caractères",
-            maxMessage: "Le genre doit contenir au maximum {{ limit }} caractères"
+            minMessage: "Le nom doit contenir au minimum {{ limit }} caractères",
+            maxMessage: "Le nom doit contenir au maximum {{ limit }} caractères"
         )
     ]
     private $description;

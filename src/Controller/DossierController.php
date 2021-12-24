@@ -41,7 +41,7 @@ class DossierController extends AbstractController
             On vérifie si le dossier existe déjà, afin de récupérer les anciennes valeurs des fichiers:
                 identitycard et adoptionfile du dossier.
         */
-        if (!$dossier) {
+        if ($dossier) {
             $oldDossier->setIdentitycard($dossier->getIdentitycard());
             $oldDossier->setAdoptionfile($dossier->getAdoptionfile());
         }
@@ -62,8 +62,7 @@ class DossierController extends AbstractController
             et sauvegarde vers la BDD
          */
         if ($form->isSubmitted() && $form->isValid()) {
-
-            if ($form->get('adoptionfile')->getData()) {
+            if ($form->get('adoptionfile')->getData() != null) {
                 $adoptionfile = $form->get('adoptionfile')->getData();
                 $adoptionfileName = md5(uniqid()).'.'. $adoptionfile->guessExtension();
                 $dossier->setAdoptionfile($adoptionfileName);

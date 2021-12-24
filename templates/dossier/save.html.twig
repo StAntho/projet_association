@@ -22,13 +22,15 @@
         <h1>Nouveau</h1>
         {% elseif dossier.status == 2 %}
         <h1>En attente</h1>
-        {% else %}
+        {% elseif dossier.status == 3 %}
         <h1>Validé</h1>
+        {% else %}
+        <h1>Refusé</h1>
         {% endif %}
 
-        {{ form_start(form) }}
+        
             <div class="form-floating mb-3">
-                Nom de l'animal: {{ dossier.animal.name }}
+                Nom de l'animal: {{ dossier.animal.name | capitalize }}
             </div>
 
             <a href="{{ asset('file/dossier/Formulaire_adoption_d_un_animal.pdf') }}" download="Formulaire_adoption_d_un_animal.pdf"> 
@@ -42,7 +44,22 @@
             <a href="{{ asset('img/dossier/' ~ dossier.identitycard ) }}" download="{{ dossier.identitycard }}">
             {{ dossier.identitycard }}
             </a>
-        {{ form_end(form) }}
+
+            {% if dossier.status == 3  %}
+                <p>Votre dossier a bien été validé !</p>
+                <p>Veuillez patienter nous allons vous recontacter</p>
+            {% elseif dossier.status == 4 %}
+                <p>Votre dossier a  été refusé</p>
+                <p>Votre dossier n'a pas été retenu</p>
+                <p>Pour plus de détails veuillez revenir vers nous.</p>
+            {% else %}
+            {{ form_start(form) }}
+                {{form_row(form.adoptionfile)}}
+                {{form_row(form.identitycard)}}
+                {{form_row(form.ajouter)}}
+            {{ form_end(form) }}    
+            {% endif %}
+            
     </div>
 
 {% endblock %}

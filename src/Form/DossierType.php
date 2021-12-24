@@ -16,17 +16,16 @@ class DossierType extends AbstractType
     {
         $builder
             ->add('adoptionfile', FileType::class, [
-                'label' => 'Fichier (PDF)',
+                'label' => "Dossier d'adoption rempli",
                 'required' => false
             ])
             ->add('identitycard', FileType::class, [
-                'label' => 'Image (JPEG/PNG)',
+                'label' => "Carte d'identité",
                 'required' => false
             ])
             ->add("ajouter", SubmitType::class, [
                 "label" => "Envoyer les documents"
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

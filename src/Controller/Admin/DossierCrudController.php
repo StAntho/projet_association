@@ -61,14 +61,20 @@ class DossierCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             //La propriété AssociationField permet de faire la liaison entre la table animal et l'utilisateur
             AssociationField::new('animal'),
-            ChoiceField::new('status')->setChoices([
-                1 => 'Nouveau',
-                2 => 'En cours',
-                3 => 'Validé',
-                4 => 'Refusé',
-            ]),
-            ImageField::new('adoptionfile')->setUploadDir('public/img/dossier'),
-            ImageField::new('identitycard')->setUploadDir('public/img/dossier'),
+
+            ChoiceField::new('status')->setChoices(
+                [
+                    'Nouveau' => 1,
+                    'En cours' => 2,
+                    'Validé' => 3,
+                    'Refusé' => 4,
+                ]
+            ),
+            ImageField::new('adoptionfile')
+                ->setUploadDir('public/img/dossier'),
+            ImageField::new('identitycard')
+                ->setUploadDir('public/img/dossier'),
+
             AssociationField::new('user'),
         ];
     }

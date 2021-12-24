@@ -42,7 +42,7 @@
                 {{ animal.name | capitalize }}
               </h5>
               <p class="card-text">
-                {{ animal.description | capitalize | slice(0,20) ~ '...'}}<a href="{{path('animal_show',{id: animal.id} )}}"><small>Lire la suite</small></a>
+                {{ animal.description | capitalize | slice(0,20) ~ '...'}}
               </p>
             </div>
             <ul class="list-group list-group-flush">
@@ -67,8 +67,7 @@
               {% if animal.reserved %}
               {% else %}
                 {% if app.user %}
-                  <a href="{{
-                    path('user_create_dossier', {
+                  <a href="{{path('user_create_dossier', {
                         user_id: app.user.id,
                         animal_id: animal.id
                     })

@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Donation{% endblock %}
+
+{% block content %}
+    Somme de donation {{ donation_amount }}
+    
+    {{ form_start(form_creditcard) }}
+        <div>
+            {{ form_row(form_creditcard.creditcardnumber) }}
+            {{ form_errors(form_creditcard)}}
+            {{ error }}
+        </div>
+
+        <div>
+            {{ form_row(form_creditcard.monthExpiration) }}
+            {{ form_errors(form_creditcard.monthExpiration) }}
+        </div>
+
+        <div>
+            {{ form_row(form_creditcard.yearExpiration) }}
+            {{ form_errors(form_creditcard.yearExpiration) }}
+        </div>
+
+        <div>
+            {{ form_row(form_creditcard.cvv) }}
+            {{ form_errors(form_creditcard.cvv) }}
+        </div>
+        
+        <div>
+            {{form_row(form_creditcard.Valider)}}
+        </div>
+    {{ form_end(form_creditcard) }}
+{% endblock %}

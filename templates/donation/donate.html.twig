@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Donation{% endblock %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+    <div>
+        {{form_row(form.amount)}}
+        {{ form_errors(form.amount)}}
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+

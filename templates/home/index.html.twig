@@ -58,6 +58,16 @@
 
 </div>
 <div>
+    {% set count = 0 %}
+    {% for donation in total_donation %}
+        {% set count = count +  donation.amount %} 
+    {% endfor %}
+    Total des donations: {{ count }}
+    <a href="{{
+        path('donation')
+    }}">
     <h2>Faire un don</h2>
+    </a>
+
 </div>
 {% endblock %}

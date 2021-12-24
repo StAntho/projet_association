@@ -31,7 +31,10 @@
                 Nom de l'animal: {{ dossier.animal.name }}
             </div>
 
-            
+            <a href="{{ asset('file/dossier/Formulaire_adoption_d_un_animal.pdf') }}" download="Formulaire_adoption_d_un_animal.pdf"> 
+            Télécharger le formulaire d'adoption de lanimal
+            </a>
+
             <a href="{{ asset('file/dossier/' ~ dossier.adoptionfile ) }}" download="{{ dossier.adoptionfile }}"> 
             {{ dossier.adoptionfile }}
             </a>

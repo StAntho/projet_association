@@ -1,0 +1,39 @@
+a.donation-button {
+    display: block;
+    text-decoration: none;
+    width: 10%;
+    margin: auto;
+}
+
+div.card-body h5.card-title small {
+    font-weight: lighter;
+}
+
+div.flexDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+div.home-introduce {
+    height: 40vW;
+    color: white;
+    text-align: center;
+    background: url('../image/long.png') no-repeat;
+    background-size: cover;
+}
+
+img.homecard {
+    margin: auto;
+    object-fit: cover;
+    width: 13vw;
+    height: 15vw;
+}
+
+div.homeblock {
+    margin-top: 3vw;
+}
+
+div.home-introduce h1 {
+    font-size: 5vw;
+}

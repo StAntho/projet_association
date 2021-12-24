@@ -78,7 +78,7 @@ class Dossier
         return $this->adoptionfile;
     }
 
-    public function setAdoptionfile(string $adoptionfile): self
+    public function setAdoptionfile($adoptionfile): self
     {
         $this->adoptionfile = $adoptionfile;
 
@@ -90,7 +90,7 @@ class Dossier
         return $this->identitycard;
     }
 
-    public function setIdentitycard(string $identitycard): self
+    public function setIdentitycard($identitycard): self
     {
         $this->identitycard = $identitycard;
 

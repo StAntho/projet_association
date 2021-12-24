@@ -1,5 +1,9 @@
 @import url('homepage.css');
 
+body {
+    overflow-x: hidden;
+}
+
 header {
     background-color: rgb(54, 90, 51) !important;
 }
@@ -89,7 +93,7 @@ form {
     margin-top: 5%;
     margin-bottom: 5%;
     background-color: rgb(54, 90, 51) !important;
-    color: white !important;
+    color: gray !important;
     font-size: 24px;
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

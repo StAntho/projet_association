@@ -75,7 +75,7 @@ class AnimalRepository extends ServiceEntityRepository
         return $this->paginator->paginate(
             $query,
             $search->page,
-            10
+            3
         );
     }
     // /**

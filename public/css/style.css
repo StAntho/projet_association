@@ -38,7 +38,6 @@ header nav a:hover {
 }
 
 
-
 .home-shop-body, .home-animal-body, .home-donation-body {
     text-align: center;
 }
@@ -130,3 +129,49 @@ form button:hover {
     background-color: white !important;
     color: rgb(54, 90, 51) !important;
 }
+
+.animal-search form{
+    
+    position: fixed;
+    right: 10px;
+    width: 15%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 2%;
+    background-color: #222 !important;
+}
+
+.animal-search #search{
+  width: 100%;
+  font-size: 16px;  
+}
+
+.animal-search #search button {
+    border: none !important; 
+}
+
+.page-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+.pagination {
+    width: 30%;
+    margin: auto;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.pagination a{
+    
+    color: green;
+    margin-left: 5px;;
+}
+
+
+
